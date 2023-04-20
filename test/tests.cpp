@@ -1,7 +1,6 @@
 // Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
 #include "textgen.h"
-#include "pch.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
