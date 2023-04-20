@@ -1,17 +1,21 @@
+// Copyright 2021 GHA Test Team
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <map>
 #include <string>
 #include <deque>
-using namespace std;
-typedef deque<string> prefix; // очередь префиксов
 
-string read_file(string filename);
-vector<string> split_text(string input_text);
-deque<prefix> Prefix(vector<string> words);
-vector<string> Suffix(prefix prefixes, vector<string> words);
-map<prefix, vector<string>> Prefix_Suffix(vector<string> words);
+typedef std::deque<std::string> prefix;
+
+std::string read_file(std::string filename);
+std::vector<std::string> split_text(std::string input_text);
+std::deque<prefix> Prefix(std::vector<std::string> words);
+std::vector<std::string> Suffix(prefix prefixes,
+    std::vector<std::string> words);
+std::map<prefix, std::vector<std::string>> Prefix_Suffix
+(std::vector<std::string> words);
 prefix GenerationPrefix();
-string Generation();
-string Generation_pref_suf(prefix prefix_new);
+std::string Generation();
+std::string Generation_pref_suf(prefix prefix_new);
