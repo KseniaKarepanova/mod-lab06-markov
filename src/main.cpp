@@ -1,4 +1,4 @@
-#include "textgen.h"
+// Copyright 2021 GHA Test Team
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -7,15 +7,14 @@
 #include <deque>
 #include <cstdlib>
 #include <ctime>
-using namespace std;
+#include "textgen.h"
+
 int main() {
     setlocale(LC_ALL, "Russian");
-    string text = read_file("file1.txt");
-    vector<string> words = split_text(text);
-    deque<prefix> prefixes = Prefix(words);
+    std::string text = read_file("file1.txt");
+    std::vector<std::string> words = split_text(text);
+    std::deque<prefix> prefixes = Prefix(words);
     Prefix_Suffix(words);
-    string new_text = Generation();
-
-    cout << new_text;
-
+    std::string new_text = Generation();
+    std::cout << new_text;
 }
