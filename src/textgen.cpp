@@ -40,8 +40,7 @@ std::vector<std::string> split_text(std::string input_text) {
                 words.push_back(word);
                 word = "";
             }
-        }
-        else {
+        } else {
             word += input_text[i];
         }
     }
@@ -54,11 +53,9 @@ std::vector<std::string> split_text(std::string input_text) {
 std::deque<prefix> Prefix(std::vector<std::string> words) {
     std::deque <prefix> prefixes;
     std::string word = "";
-    for (int i = 0; i < words.size() - NPREF; i++)
-    {
+    for (int i = 0; i < words.size() - NPREF; i++) {
         prefix temp;
-        for (int j = 0; j < NPREF; j++)
-        {
+        for (int j = 0; j < NPREF; j++) {
             temp.push_back(words[j + i]);
         }
         prefixes.push_back(temp);
@@ -89,9 +86,8 @@ std::map<prefix, std::vector<std::string>> Prefix_Suffix
         std::map<prefix, std::vector<std::string>>::iterator
             it = statetab.find(prefixes[i]);
         if (it == statetab.end()) {
-            statetab.insert({ prefixes[i],Suffix(prefixes[i],words) });
-        }
-        else {
+            statetab.insert({ prefixes[i], Suffix(prefixes[i], words) });
+        } else {
             std::vector<std::string> suf = it->second;
             for (int i = 0; i < Suffix(prefixes[i], words).size(); i++) {
                 suf.push_back(Suffix(prefixes[i], words)[i]);
@@ -125,8 +121,7 @@ std::string Generation_pref_suf(prefix prefix_new) {
     }
     if (suffixes.size() == 0) {
         return "";
-    }
-    else {
+    } else {
         int index = rand() % suffixes.size();
         return suffixes[index];
     }
@@ -151,8 +146,7 @@ std::string Generation() {
         }
         if (suffixes.size() == 0) {
             break;
-        }
-        else {
+        } else {
             int index = rand() % suffixes.size();
             text = text + " " + suffixes[index];
             prefix_new.pop_front();
