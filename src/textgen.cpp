@@ -1,5 +1,4 @@
 // Copyright 2021 GHA Test Team
-#define _CRT_RAND_S
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -7,6 +6,7 @@
 #include <string>
 #include <deque>
 #include <ctime>
+#include <random>
 #include"textgen.h"
 
 const int NPREF = 2;
@@ -98,9 +98,10 @@ std::map<prefix, std::vector<std::string>> Prefix_Suffix
 }
 
 prefix GenerationPrefix() {
-    unsigned int random;
-    rand_s(&random);
-    int index = random % statetab.size();
+    std::random_device random;
+    std::mt19937 gen(random());
+    std::uniform_int_distribution<> dis(0, RAND_MAX);
+    int index = dis(gen) % statetab.size();
     std::deque<prefix> keys;
     for (auto it = statetab.begin(); it != statetab.end(); it++) {
         keys.push_back(it->first);
@@ -124,9 +125,10 @@ std::string Generation_pref_suf(prefix prefix_new) {
     if (suffixes.size() == 0) {
         return "";
     } else {
-        unsigned int random;
-        rand_s(&random);
-        int index = random % suffixes.size();
+        std::random_device random;
+        std::mt19937 gen(random());
+        std::uniform_int_distribution<> dis(0, RAND_MAX);
+        int index = dis(gen) % suffixes.size();
         return suffixes[index];
     }
 }
@@ -151,9 +153,10 @@ std::string Generation() {
         if (suffixes.size() == 0) {
             break;
         } else {
-            unsigned int random;
-            rand_s(&random);
-            int index = random % suffixes.size();
+           std::random_device random;
+            std::mt19937 gen(random());
+            std::uniform_int_distribution<> dis(0, RAND_MAX);
+            int index = dis(gen) % suffixes.size();
             text = text + " " + suffixes[index];
             prefix_new.pop_front();
             prefix_new.push_back(suffixes[0]);
