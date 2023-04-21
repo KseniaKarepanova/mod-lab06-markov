@@ -114,12 +114,15 @@ std::string Generation_pref_suf(prefix prefix_new) {
     std::string text = "";
     srand(time(NULL));
     std::vector<std::string> suffixes;
-    for (int i = 0; i < statetab.size(); i++) {
-        std::map<prefix, std::vector<std::string>>::iterator
-            it = statetab.find(prefix_new);
-        if (it != statetab.end()) {
-            suffixes = it->second;
-            break;
+    for (auto it = statetab.begin(); it != statetab.end(); it++) {
+        prefix current = it->first;
+
+        for (int i = 0; i < current.size(); i++) {
+            if (current[i] != prefix_new[i])
+                break;
+
+            if (i == current.size() - 1)
+                suffixes = it->second;
         }
     }
     if (suffixes.size() == 0) {
@@ -131,7 +134,7 @@ std::string Generation_pref_suf(prefix prefix_new) {
         int index = dis(gen) % suffixes.size();
         return suffixes[index];
     }
-}
+  }
 
 std::string Generation() {
     std::string text = "";
