@@ -1,6 +1,5 @@
 // Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
-#include "pch.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -38,7 +37,7 @@ TEST(test3, test_Prefix_Suffix2) {
     setlocale(LC_ALL, "Russian");
     std::string text = read_file("file2.txt");
     std::vector<std::string> words = split_text(text);
-    std::map<prefix, std::vector<std::string>> 
+    std::map<prefix, std::vector<std::string>>
         statetab = Prefix_Suffix(words);
     prefix new_prefix;
     new_prefix.push_back("Слово");
@@ -78,7 +77,7 @@ TEST(test5, test_LengthText2) {
     bool flag = false;
     int count_word_in_prefix = 2;
     int max_length = 1000;
-    if ((txt_split.size() >= count_word_in_prefix) 
+    if ((txt_split.size() >= count_word_in_prefix)
         && (txt_split.size() <= max_length)) flag = true;
     bool expected_flag = true;
 
