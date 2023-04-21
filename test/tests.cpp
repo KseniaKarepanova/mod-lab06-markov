@@ -43,7 +43,7 @@ TEST(test3, test_Prefix_Suffix2) {
     new_prefix.push_back("Слово");
     new_prefix.push_back("может");
     std::vector<std::string> suffixes;
-    suffixes.push_back("согреть");
+    suffixes.push_back("согреть,");
     suffixes.push_back("нам");
 
     std::string suf = Generation_pref_suf(new_prefix);
