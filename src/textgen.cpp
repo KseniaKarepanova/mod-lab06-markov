@@ -113,22 +113,20 @@ prefix GenerationPrefix() {
 
 std::string Generation_pref_suf(prefix prefix_new) {
     srand(time(NULL));
-    for (int i = 0; i < prefix_new.size(); i++) {
+    std::string text = "";
         std::vector<std::string> suffixes;
         auto it = statetab.find(prefix_new);
         if (it != statetab.end())
             suffixes = it->second;
 
-        if (suffixes.size() == 0) {
-            return "";
-        } else {
+        if (suffixes.size() != 0) {
             std::random_device random;
             std::mt19937 gen(random());
             std::uniform_int_distribution<> dis(0, RAND_MAX);
             int index = dis(gen) % suffixes.size();
-            return suffixes[index];
+            text=suffixes[index];
         }
-    }
+        return text;
 }
 
 std::string Generation() {
