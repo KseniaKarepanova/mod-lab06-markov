@@ -13,7 +13,7 @@ const int NPREF = 2;
 const int MAXGEN = 1000;
 typedef std::deque<std::string> prefix;
 std::map<prefix, std::vector<std::string>> statetab;
-std::string Sufix;
+
 
 std::string read_file(std::string filename) {
     std::ifstream input_file(filename.c_str());
@@ -113,20 +113,21 @@ prefix GenerationPrefix() {
 
 std::string Generation_pref_suf(prefix prefix_new) {
     srand(time(NULL));
-    std::vector<std::string> suffixes;
-    auto it = statetab.find(prefix_new);
-    if (it != statetab.end())
-        suffixes = it->second;
+    for (int i = 0; i < prefix_new.size(); i++) {
+        std::vector<std::string> suffixes;
+        auto it = statetab.find(prefix_new);
+        if (it != statetab.end())
+            suffixes = it->second;
 
-    if (suffixes.size() == 0) {
-        return "";
-    } else {
-        std::random_device random;
-        std::mt19937 gen(random());
-        std::uniform_int_distribution<> dis(0, RAND_MAX);
-        int index = dis(gen) % suffixes.size();
-        Sufix = suffixes[index];
-        return Sufix;
+        if (suffixes.size() == 0) {
+            break;
+        } else {
+            std::random_device random;
+            std::mt19937 gen(random());
+            std::uniform_int_distribution<> dis(0, RAND_MAX);
+            int index = dis(gen) % suffixes.size();
+            return suffixes[index];
+        }
     }
 }
 
@@ -137,7 +138,7 @@ std::string Generation() {
     for (int i = 0; i < prefix_new.size(); i++) {
         text = text + " " + prefix_new[i];
     }
-    for (int j = 0; j < MAXGEN; j++) {
+    for (int j = 0; j < MAXGEN - prefix_new.size(); j++) {
         std::vector<std::string> suffixes;
         for (int i = 0; i < statetab.size(); i++) {
             std::map<prefix, std::vector<std::string>>::iterator
@@ -150,7 +151,7 @@ std::string Generation() {
         if (suffixes.size() == 0) {
             break;
         } else {
-           std::random_device random;
+            std::random_device random;
             std::mt19937 gen(random());
             std::uniform_int_distribution<> dis(0, RAND_MAX);
             int index = dis(gen) % suffixes.size();
