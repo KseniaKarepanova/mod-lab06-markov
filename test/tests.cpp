@@ -55,7 +55,7 @@ TEST(test3, test_Prefix_Suffix2) {
 }
 
 TEST(test4, test_LengthText1) {
-    std::string text = read_file("file2.txt");
+    std::string text = read_file("file2_new.txt");
     std::vector<std::string> words = split_text(text);
     std::map<prefix, std::vector<std::string>>
         statetab = Prefix_Suffix(words);
