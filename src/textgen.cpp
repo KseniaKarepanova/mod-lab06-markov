@@ -120,7 +120,7 @@ std::string Generation_pref_suf(prefix prefix_new) {
             suffixes = it->second;
 
         if (suffixes.size() == 0) {
-            break;
+            return "";
         } else {
             std::random_device random;
             std::mt19937 gen(random());
