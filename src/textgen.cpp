@@ -124,7 +124,7 @@ std::string Generation_pref_suf(prefix prefix_new) {
             std::mt19937 gen(random());
             std::uniform_int_distribution<> dis(0, RAND_MAX);
             int index = dis(gen) % suffixes.size();
-            text=suffixes[index];
+            text = suffixes[index];
         }
         return text;
 }
