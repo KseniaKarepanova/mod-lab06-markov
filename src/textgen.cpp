@@ -51,6 +51,19 @@ std::vector<std::string> split_text(std::string input_text) {
     return words;
 }
 
+std::deque<prefix> Prefix(std::vector<std::string> words) {
+    std::deque <prefix> prefixes;
+    std::string word = "";
+    for (int i = 0; i < words.size() - NPREF; i++) {
+        prefix temp;
+        for (int j = 0; j < NPREF; j++) {
+            temp.push_back(words[j + i]);
+        }
+        prefixes.push_back(temp);
+    }
+    return prefixes;
+}
+
 std::vector<std::string> Suffix(prefix prefixes,
     std::vector<std::string> words) {
     std::vector<std::string> suffix;
@@ -83,19 +96,6 @@ std::map<prefix, std::vector<std::string>> Prefix_Suffix
         }
     }
     return statetab;
-}
-
-prefix GenerationPrefix() {
-    std::random_device random;
-    std::mt19937 gen(random());
-    std::uniform_int_distribution<> dis(0, RAND_MAX);
-    int index = dis(gen) % statetab.size();
-    std::deque<prefix> keys;
-    for (auto it = statetab.begin(); it != statetab.end(); it++) {
-        keys.push_back(it->first);
-    }
-    prefix prefix_new = keys[index];
-    return prefix_new;
 }
 
 std::string Generation_pref_suf(prefix prefix_new) {
