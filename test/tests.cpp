@@ -61,7 +61,7 @@ TEST(test4, test_LengthText) {
         statetab = Prefix_Suffix(words);
     std::string generate_text = Generation();
     std::vector<std::string> txt_split = split_text(generate_text);
-    int expected_length= = 1000;
+    int expected_length = 1000;
     
     EXPECT_EQ(txt_split.size(), expected_length);
 }
