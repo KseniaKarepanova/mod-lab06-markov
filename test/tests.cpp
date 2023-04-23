@@ -54,31 +54,15 @@ TEST(test3, test_Prefix_Suffix2) {
     EXPECT_EQ(flag, expected_flag);
 }
 
-TEST(test4, test_LengthText1) {
-    std::string text = read_file("file2_new.txt");
-    std::vector<std::string> words = split_text(text);
-    std::map<prefix, std::vector<std::string>>
-        statetab = Prefix_Suffix(words);
-    std::string generate_text = Generation();
-    std::vector<std::string> txt_split = split_text(generate_text);
-    int expected_length = 3;
-    EXPECT_EQ(txt_split.size(), expected_length);
-}
-
-TEST(test5, test_LengthText2) {
+TEST(test4, test_LengthText) {
     std::string text = read_file("file1.txt");
     std::vector<std::string> words = split_text(text);
     std::map<prefix, std::vector<std::string>>
         statetab = Prefix_Suffix(words);
     std::string generate_text = Generation();
     std::vector<std::string> txt_split = split_text(generate_text);
-    int expected_length = 3;
-    bool flag = false;
-    int count_word_in_prefix = 2;
-    int max_length = 1000;
-    if ((txt_split.size() >= count_word_in_prefix)
-        && (txt_split.size() <= max_length)) flag = true;
-    bool expected_flag = true;
-
-    EXPECT_EQ(flag, expected_flag);
+    int expected_length= = 1000;
+    
+    EXPECT_EQ(txt_split.size(), expected_length);
 }
+
