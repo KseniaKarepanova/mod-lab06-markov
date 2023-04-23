@@ -13,6 +13,7 @@ const int NPREF = 2;
 const int MAXGEN = 1000;
 typedef std::deque<std::string> prefix;
 std::map<prefix, std::vector<std::string>> statetab;
+std::string Sufix;
 
 std::string read_file(std::string filename) {
     std::ifstream input_file(filename.c_str());
@@ -111,20 +112,12 @@ prefix GenerationPrefix() {
 }
 
 std::string Generation_pref_suf(prefix prefix_new) {
-    std::string text = "";
     srand(time(NULL));
     std::vector<std::string> suffixes;
-    for (auto it = statetab.begin(); it != statetab.end(); it++) {
-        prefix current = it->first;
+    auto it = statetab.find(prefix_new);
+    if (it != statetab.end())
+        suffixes = it->second;
 
-        for (int i = 0; i < current.size(); i++) {
-            if (current[i] != prefix_new[i])
-                break;
-
-            if (i == current.size() - 1)
-                suffixes = it->second;
-        }
-    }
     if (suffixes.size() == 0) {
         return "";
     } else {
@@ -132,9 +125,10 @@ std::string Generation_pref_suf(prefix prefix_new) {
         std::mt19937 gen(random());
         std::uniform_int_distribution<> dis(0, RAND_MAX);
         int index = dis(gen) % suffixes.size();
-        return suffixes[index];
+        Sufix = suffixes[index];
+        return Sufix;
     }
-  }
+}
 
 std::string Generation() {
     std::string text = "";
